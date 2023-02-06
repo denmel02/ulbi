@@ -1,1 +1,0 @@
-export const testFn = (message: string): void => console.log('Test', message);
