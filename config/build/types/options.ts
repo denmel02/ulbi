@@ -4,4 +4,5 @@ import { BuildPaths } from "./paths";
 export interface BuildOptions {
   mode: BuildMode;
   paths: BuildPaths;
+  port: number;
 }
