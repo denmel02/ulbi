@@ -4,12 +4,13 @@ import { Link, Route, Routes } from 'react-router-dom';
 import './styles/index.scss';
 import { AboutPageLazy, MainPageLazy } from './pages';
 import { useTheme } from './theme';
+import { classNames } from './helpers';
 
 export const App = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className={ `app ${theme}` }>
+    <div className={ classNames('app', theme) }>
       <button onClick={ toggleTheme }>Toggle theme</button>
       <Link to="/">Main</Link>
       <Link to="/about">About</Link>
