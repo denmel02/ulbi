@@ -1,7 +1,6 @@
 import { FC, useCallback, useMemo, useState } from "react";
-import { Theme } from "./Theme";
-import { THEME_KEY } from "./Theme.const";
-import { ThemeContext } from "./Theme.context";
+import { Theme, THEME_KEY } from "../model";
+import { ThemeContext } from "../lib";
 
 export const ThemeProvider: FC = (props) => {
   const { children } = props;

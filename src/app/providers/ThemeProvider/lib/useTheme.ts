@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { Theme } from "./Theme"
-import { ThemeContext } from "./Theme.context";
+import { Theme } from "../model"
+import { ThemeContext } from "./ThemeContext";
 
 interface UseThemeValue {
   theme: Theme;
