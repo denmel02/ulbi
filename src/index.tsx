@@ -1,6 +1,7 @@
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { App, ThemeProvider } from 'app';
+import { App } from 'app';
+import { ThemeProvider } from 'shared';
 
 render(
   <BrowserRouter>
