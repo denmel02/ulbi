@@ -13,3 +13,14 @@
 .collapsed {
   width: var(--sidebar-collapsed-width);
 }
+
+.switchers {
+  display: flex;
+  grid-gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.language {
+  color: var(--inverted-primary-color);
+}

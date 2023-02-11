@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { classNames, ToggleThemeButton } from "shared";
+import { LanguageButton } from "../../../LanguageButton";
 import classes from "./Sidebar.module.scss";
 
 interface SidebarProps {
@@ -13,8 +14,9 @@ export const Sidebar = (props: SidebarProps) => {
   return (
     <div className={ classNames(classes.sidebar, isCollapsed && classes.collapsed, className) }>
       <button onClick={ onClick }>Toggle</button>
-      <div>
+      <div className={ classes.switchers }>
         <ToggleThemeButton />
+        <LanguageButton className={ classes.language }/>
       </div>
     </div>
   );
