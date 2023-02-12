@@ -1,4 +1,4 @@
-import { BuildMode } from "./mode";
+import { BuildMode } from './mode';
 
 export interface BuildEnv {
   mode?: BuildMode;
