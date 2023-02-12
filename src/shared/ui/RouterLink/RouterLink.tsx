@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { Link, LinkProps } from "react-router-dom";
-import { classNames } from "../../lib";
-import classes from "./RouterLink.module.scss";
+import { FC } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
+import { classNames } from '../../lib';
+import classes from './RouterLink.module.scss';
 
 type RouterLinkVariant = 'primary' | 'secondary';
 
@@ -10,12 +10,12 @@ interface RouterLinkProps extends LinkProps {
 }
 
 export const RouterLink: FC<RouterLinkProps> = (props) => {
-  const { className, variant = 'primary', ...linkProps } = props;
+    const { className, variant = 'primary', ...linkProps } = props;
 
-  return (
-    <Link
-      className={ classNames(className, classes[variant]) }
-      { ...linkProps }
-    />
-  );
-}
+    return (
+        <Link
+            className={ classNames(className, classes[variant]) }
+            { ...linkProps }
+        />
+    );
+};

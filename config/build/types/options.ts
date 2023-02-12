@@ -1,5 +1,5 @@
-import { BuildMode } from "./mode";
-import { BuildPaths } from "./paths";
+import { BuildMode } from './mode';
+import { BuildPaths } from './paths';
 
 export interface BuildOptions {
   mode: BuildMode;
