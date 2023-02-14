@@ -1,10 +1,11 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { PageSpinner } from 'widgets';
 import { RouteConfig } from '../model';
 
 export const AppRouter = () => {
     return (
-        <Suspense fallback={ <h1>Loading...</h1> }>
+        <Suspense fallback={ <PageSpinner /> }>
             <Routes>
                 { Object.values(RouteConfig).map((routeProps) => (
                     <Route key={ routeProps.path } {...routeProps} />
