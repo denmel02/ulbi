@@ -1,4 +1,4 @@
-import { Navbar, Sidebar } from 'widgets';
+import { Navbar, PageSpinner, Sidebar } from 'widgets';
 import { classNames, useTheme } from 'shared';
 import './styles/index.scss';
 import { AppRouter } from './router';
@@ -9,7 +9,7 @@ export const App = () => {
 
     return (
         <div className={ classNames('app', theme) }>
-            <Suspense fallback="">
+            <Suspense fallback={ <PageSpinner className="loader" /> }>
                 <Navbar />
                 <div className='page-content'>
                     <Sidebar />

@@ -1,3 +1,4 @@
 export type AppRoutes =
   'main' |
-  'about';
+  'about' |
+  'notFound';
