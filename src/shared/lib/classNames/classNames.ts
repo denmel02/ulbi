@@ -13,9 +13,8 @@ export const classNames = (...classes: Class[]): string => {
                 return [...result, classItem];
             }
 
-            const calcClassItem = Object.entries(classItem)
-                .filter(([_, value]) => value)
-                .map(([key]) => key)
+            const calcClassItem = Object.keys(classItem)
+                .filter((key) => classItem[key])
                 .join(' ');
 
             return [...result, calcClassItem];
