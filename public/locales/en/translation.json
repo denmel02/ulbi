@@ -2,5 +2,7 @@
   "Main": "Main",
   "About": "About",
   "Lng": "English",
-  "Not found": "Not found"
+  "Not found": "Not found",
+  "Something went wrong": "Something went wrong",
+  "Try again": "Try again"
 }

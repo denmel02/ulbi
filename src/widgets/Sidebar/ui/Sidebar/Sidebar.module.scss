@@ -24,3 +24,9 @@
 .language {
     color: var(--inverted-primary-color);
 }
+
+.testActions {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+}

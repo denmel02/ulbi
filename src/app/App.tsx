@@ -1,8 +1,9 @@
-import { Navbar, PageSpinner, Sidebar } from 'widgets';
+import { Navbar, PageError, PageSpinner, Sidebar } from 'widgets';
 import { classNames, useTheme } from 'shared';
 import './styles/index.scss';
 import { AppRouter } from './router';
 import { Suspense } from 'react';
+import { ErrorBoundary } from './ui';
 
 export const App = () => {
     const { theme } = useTheme();
@@ -10,13 +11,15 @@ export const App = () => {
     return (
         <div className={ classNames('app', theme) }>
             <Suspense fallback={ <PageSpinner className="loader" /> }>
-                <Navbar />
-                <div className='page-content'>
-                    <Sidebar />
-                    <div className='page-wrapper'>
-                        <AppRouter />
+                <ErrorBoundary error={ <PageError className="error"/> }>
+                    <Navbar />
+                    <div className='page-content'>
+                        <Sidebar />
+                        <div className='page-wrapper'>
+                            <AppRouter />
+                        </div>
                     </div>
-                </div>
+                </ErrorBoundary>
             </Suspense>
         </div>
     );
