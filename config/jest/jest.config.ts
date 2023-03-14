@@ -6,6 +6,9 @@ export default {
         '/node_modules/'
     ],
     coverageProvider: 'babel',
+    modulePaths: [
+        '<rootDir>/src/'
+    ],
     moduleDirectories: [
         'node_modules'
     ],
@@ -21,5 +24,10 @@ export default {
     testMatch: [
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'
     ],
-    testEnvironment: 'jsdom'
+    testEnvironment: 'jsdom',
+    setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+    moduleNameMapper: {
+        '\\.s?css$': 'identity-obj-proxy',
+        '\\.svg$': '<rootDir>/config/jest/JestMockComponent.tsx'
+    },
 };
