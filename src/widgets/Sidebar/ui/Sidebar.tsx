@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { classNames, ToggleThemeButton } from 'shared';
-import { LanguageButton } from '../../../LanguageButton';
+import { LanguageButton } from '../../LanguageButton';
 import classes from './Sidebar.module.scss';
 
 interface SidebarProps {
