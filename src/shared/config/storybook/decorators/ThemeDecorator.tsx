@@ -10,8 +10,6 @@ interface ThemeDecoratorProps {
 export const ThemeDecorator: FC<ThemeDecoratorProps> = (props) => {
     const { children, themeName } = props;
 
-    console.log(themeName);
-
     return (
         <div className={ classNames('app', themeName) }>
             {children}
