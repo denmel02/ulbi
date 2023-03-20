@@ -17,13 +17,13 @@ jobs:
         uses: actions/setup-node@v1.4.3
         with:
           node-version: ${{ matrix.node }}
-      - name: checkout master branch
+      - name: checkout branch
         uses: actions/checkout@v2
       - name: cache node_modules
         uses: actions/cache@v2.1.0
+        id: cache-dependencies
         with:
           path: node_modules
-          # An explicit key for restoring and saving the cache
           key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
       - name: install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -36,6 +36,20 @@ jobs:
         node-version: [17.x]
     needs: install-cache
     steps:
+      - name: setup node.js
+        uses: actions/setup-node@v1.4.3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: checkout branch
+        uses: actions/checkout@v2
+      - name: restore  dependencies
+        uses: actions/cache@v2.1.0
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+          restore-keys: |
+            ${{ matrix.os }}-node-v${{ matrix.node }}-deps-
       - name: run lint typescript
         run: npm run lint:ts
 
