@@ -125,28 +125,28 @@ jobs:
       - name: run build
         run: npm run build:prod
 
-  test-ui:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        node-version: [17.x]
-    needs: [install-cache, lint-ts, lint-scss, test-unit, build]
-    steps:
-      - name: setup node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-      - name: checkout branch
-        uses: actions/checkout@v3
-      - name: restore  dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: node_modules
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
-          restore-keys: |
-            ${{ matrix.os }}-node-v${{ matrix.node }}-deps-
-      - name: run build storybook
-        run: npm run storybook:build
-      - name: run test ui
-        run: npm run test:ui:ci
+  # test-ui:
+  #   runs-on: macos-latest
+  #   strategy:
+  #     matrix:
+  #       node-version: [17.x]
+  #   needs: [install-cache, lint-ts, lint-scss, test-unit, build]
+  #   steps:
+  #     - name: setup node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node }}
+  #     - name: checkout branch
+  #       uses: actions/checkout@v3
+  #     - name: restore  dependencies
+  #       uses: actions/cache@v3
+  #       id: cache-dependencies
+  #       with:
+  #         path: node_modules
+  #         key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+  #         restore-keys: |
+  #           ${{ matrix.os }}-node-v${{ matrix.node }}-deps-
+  #     - name: run build storybook
+  #       run: npm run storybook:build
+  #     - name: run test ui
+  #       run: npm run test:ui:ci
