@@ -149,4 +149,4 @@ jobs:
       - name: run build storybook
         run: npm run storybook:build
       - name: run test ui
-        run: npm run test:ui
+        run: npm run test:ui:ci
