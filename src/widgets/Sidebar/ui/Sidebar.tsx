@@ -29,7 +29,7 @@ export const Sidebar = (props: SidebarProps) => {
             className={ classNames(classes.sidebar, isCollapsed && classes.collapsed, className) }
         >
             <div className={ classes.testActions }>
-                <button data-testid="sidebar-toggle" onClick={ onClick }>Toggle</button>
+                <button data-testid="sidebar-toggle" onClick={ onClick }>Toggle sidebar</button>
                 <button onClick={ onClickError }>Error</button>
             </div>
             <div className={ classes.switchers }>
