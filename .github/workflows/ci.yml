@@ -14,13 +14,13 @@ jobs:
         node-version: [17.x]
     steps:
       - name: setup node.js
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: cache node_modules
-        uses: actions/cache@v2.1.0
+        uses: actions/cache@v3
         id: cache-dependencies
         with:
           path: node_modules
@@ -37,13 +37,13 @@ jobs:
     needs: install-cache
     steps:
       - name: setup node.js
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: restore  dependencies
-        uses: actions/cache@v2.1.0
+        uses: actions/cache@v3
         id: cache-dependencies
         with:
           path: node_modules
@@ -60,6 +60,20 @@ jobs:
         node-version: [17.x]
     needs: install-cache
     steps:
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: checkout branch
+        uses: actions/checkout@v3
+      - name: restore  dependencies
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+          restore-keys: |
+            ${{ matrix.os }}-node-v${{ matrix.node }}-deps-
       - name: run lint scss
         run: npm run lint:scss
 
@@ -70,6 +84,20 @@ jobs:
         node-version: [17.x]
     needs: install-cache
     steps:
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: checkout branch
+        uses: actions/checkout@v3
+      - name: restore  dependencies
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+          restore-keys: |
+            ${{ matrix.os }}-node-v${{ matrix.node }}-deps-
       - name: run test unit
         run: npm run test:unit
 
@@ -80,6 +108,20 @@ jobs:
         node-version: [17.x]
     needs: [install-cache, lint-ts, lint-scss, test-unit]
     steps:
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: checkout branch
+        uses: actions/checkout@v3
+      - name: restore  dependencies
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+          restore-keys: |
+            ${{ matrix.os }}-node-v${{ matrix.node }}-deps-
       - name: run build
         run: npm run build:prod
 
@@ -90,6 +132,20 @@ jobs:
         node-version: [17.x]
     needs: [install-cache, lint-ts, lint-scss, test-unit, build]
     steps:
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: checkout branch
+        uses: actions/checkout@v3
+      - name: restore  dependencies
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+          restore-keys: |
+            ${{ matrix.os }}-node-v${{ matrix.node }}-deps-
       - name: run build storybook
         run: npm run storybook:build
       - name: run test ui
