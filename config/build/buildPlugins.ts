@@ -5,7 +5,8 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types';
 
 export const buildPlugins = (options: BuildOptions): WebpackPluginInstance[] => {
-    return [
+    const isDevelopment = options.mode === 'development';
+    const plugins = [
         new ProgressPlugin(),
         new HtmlWebpackPlugin({
             template: options.paths.html
@@ -15,11 +16,18 @@ export const buildPlugins = (options: BuildOptions): WebpackPluginInstance[] => 
             chunkFilename: 'css/[name].[contenthash:8].css',
         }),
         new DefinePlugin({
-            IS_DEV: options.mode === 'development'
-        }),
-        new HotModuleReplacementPlugin(),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false
+            IS_DEV: isDevelopment
         })
     ];
+
+    if (isDevelopment) {
+        plugins.push(
+            new HotModuleReplacementPlugin(),
+            new BundleAnalyzerPlugin({
+                openAnalyzer: false
+            })
+        );
+    }
+
+    return plugins;
 };

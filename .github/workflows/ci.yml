@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  install-cache:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    steps:
+      - name: setup node.js
+        uses: actions/setup-node@v1.4.3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: checkout master branch
+        uses: actions/checkout@v2
+      - name: cache node_modules
+        uses: actions/cache@v2.1.0
+        with:
+          path: node_modules
+          # An explicit key for restoring and saving the cache
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+      - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+  lint-ts:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    needs: install-cache
+    steps:
+      - name: run lint typescript
+        run: npm run lint:ts
+
+  lint-scss:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    needs: install-cache
+    steps:
+      - name: run lint scss
+        run: npm run lint:scss
+
+  test-unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    needs: install-cache
+    steps:
+      - name: run test unit
+        run: npm run test:unit
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    needs: [install-cache, lint-ts, lint-scss, test-unit]
+    steps:
+      - name: run build
+        run: npm run build:prod
+
+  test-ui:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    needs: [install-cache, lint-ts, lint-scss, test-unit, build]
+    steps:
+      - name: run build storybook
+        run: npm run storybook:build
+      - name: run test ui
+        run: npm run test:ui

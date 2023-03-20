@@ -10,8 +10,6 @@
         "plugin:react/jsx-runtime",
         "plugin:i18next/recommended"
     ],
-    "overrides": [
-    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -44,5 +42,13 @@
             "error",
             { "markupOnly": true }
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": [ "src/**/*.test.tsx" ],
+            "rules": {
+                "i18next/no-literal-string": "off"
+            }
+        }
+    ]
 }
