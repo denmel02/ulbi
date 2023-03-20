@@ -8,7 +8,7 @@ on:
 
 jobs:
   install-cache:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         node-version: [17.x]
@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
   lint-ts:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         node-version: [17.x]
@@ -54,7 +54,7 @@ jobs:
         run: npm run lint:ts
 
   lint-scss:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         node-version: [17.x]
@@ -78,7 +78,7 @@ jobs:
         run: npm run lint:scss
 
   test-unit:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         node-version: [17.x]
@@ -102,7 +102,7 @@ jobs:
         run: npm run test:unit
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         node-version: [17.x]
@@ -126,7 +126,7 @@ jobs:
         run: npm run build:prod
 
   test-ui:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         node-version: [17.x]
