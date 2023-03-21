@@ -4,9 +4,6 @@ import { RouterDecorator, ThemeDecorator } from '../../src/shared/config/storybo
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
-    backgrounds: {
-        disable: true,
-    },
     options: {
         storySort: {
             order: [ 'pages', 'widgets', 'shared' ]

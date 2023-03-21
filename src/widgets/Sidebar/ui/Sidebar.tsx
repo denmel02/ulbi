@@ -1,6 +1,9 @@
+import { RoutePath } from 'app/router/model';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, ToggleThemeButton } from 'shared';
+import { Button, classNames, ToggleThemeButton, RouterLink } from 'shared';
+import MainIcon from 'shared/assets/svg/main.svg';
+import AboutIcon from 'shared/assets/svg/about.svg';
 import { LanguageButton } from '../../LanguageButton';
 import classes from './Sidebar.module.scss';
 
@@ -30,13 +33,43 @@ export const Sidebar = (props: SidebarProps) => {
             data-testid="sidebar"
             className={ classNames(classes.sidebar, isCollapsed && classes.collapsed, className) }
         >
+            <Button
+                data-testid="sidebar-toggle"
+                className={ classes.collapsedButton }
+                onClick={ onClick }
+                variant="backgroundInverted"
+                size="sizeXL"
+                isSquare
+            >
+                { isCollapsed ? '>' : '<' }
+            </Button>
+            <div className={ classes.links }>
+                <RouterLink
+                    className={ classes.link }
+                    to={ RoutePath.main }
+                    variant="secondary"
+                >
+                    <MainIcon width={ 24 } height={ 24 } />
+                    <span className={ classes.linkTitle }>{ t('Main') }</span>
+                </RouterLink>
+                <RouterLink
+                    className={ classes.link }
+                    to={ RoutePath.about }
+                    variant="secondary"
+                >
+                    <AboutIcon width={ 24 } height={ 24 } />
+                    <span className={ classes.linkTitle }>{ t('About') }</span>
+                </RouterLink>
+            </div>
             <div className={ classes.testActions }>
-                <button data-testid="sidebar-toggle" onClick={ onClick }>{ t('Toggle') }</button>
                 <button onClick={ onClickError }>{ t('Error') }</button>
             </div>
             <div className={ classes.switchers }>
                 <ToggleThemeButton />
-                <LanguageButton className={ classes.language }/>
+                <LanguageButton
+                    className={ classes.language }
+                    isShort={ isCollapsed }
+                />
             </div>
         </div>
     );
