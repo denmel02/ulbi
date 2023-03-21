@@ -3,10 +3,11 @@ import { Button } from 'shared';
 
 interface LanguageButtonProps {
   className?: string;
+  isShort?: boolean;
 }
 
 export const LanguageButton = (props: LanguageButtonProps) => {
-    const { className } = props;
+    const { className, isShort } = props;
     const { t, i18n } = useTranslation();
     const onClick = async () => {
         const newLng = i18n.language === 'en' ? 'ru' : 'en';
@@ -15,6 +16,6 @@ export const LanguageButton = (props: LanguageButtonProps) => {
     };
 
     return (
-        <Button className={ className } onClick={ onClick }>{ t('Lng') }</Button>
+        <Button className={ className } onClick={ onClick }>{ isShort ? t('ShortLng') : t('Lng') }</Button>
     );
 };
