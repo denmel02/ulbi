@@ -23,14 +23,9 @@ Background.args = {
     variant: 'background'
 };
 
-export const BackgroundInverted = Template.bind({});
-BackgroundInverted.args = {
-    variant: 'backgroundInverted'
-};
-
-export const BackgroundInvertedSquared = Template.bind({});
-BackgroundInvertedSquared.args = {
-    variant: 'backgroundInverted',
+export const BackgroundSquared = Template.bind({});
+BackgroundSquared.args = {
+    variant: 'background',
     children: '=',
     isSquare: true
 };
@@ -45,4 +40,15 @@ SizeL.args = {
 export const SizeXL = Template.bind({});
 SizeXL.args = {
     size: 'sizeXL'
+};
+
+export const Inverted = Template.bind({});
+Inverted.args = {
+    color: 'inverted'
+};
+
+export const BackgroundInverted = Template.bind({});
+BackgroundInverted.args = {
+    variant: 'background',
+    color: 'inverted'
 };

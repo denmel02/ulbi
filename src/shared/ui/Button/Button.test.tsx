@@ -28,11 +28,6 @@ describe('Button', () => {
         expect(screen.getByText('Test')).toHaveClass('background');
     });
 
-    test('variant backgroundInverted', () => {
-        render(<Button variant="backgroundInverted">Test</Button>);
-        expect(screen.getByText('Test')).toHaveClass('backgroundInverted');
-    });
-
     test('square', () => {
         render(<Button isSquare>Test</Button>);
         expect(screen.getByText('Test')).toHaveClass('square');
@@ -56,5 +51,20 @@ describe('Button', () => {
     test('sizeXL', () => {
         render(<Button size="sizeXL">Test</Button>);
         expect(screen.getByText('Test')).toHaveClass('sizeXL');
+    });
+
+    test('color default', () => {
+        render(<Button>Test</Button>);
+        expect(screen.getByText('Test')).toHaveClass('normal');
+    });
+
+    test('color normal', () => {
+        render(<Button color="normal">Test</Button>);
+        expect(screen.getByText('Test')).toHaveClass('normal');
+    });
+
+    test('color inverted', () => {
+        render(<Button color="inverted">Test</Button>);
+        expect(screen.getByText('Test')).toHaveClass('inverted');
     });
 });
