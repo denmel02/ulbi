@@ -18,11 +18,6 @@
     background: var(--background-color);
 }
 
-.backgroundInverted {
-    background: var(--inverted-background-color);
-    color: var(--inverted-primary-color);
-}
-
 .sizeM {
     font: var(--font-m);
 }
@@ -51,5 +46,14 @@
     &.sizeXL {
         width: var(--font-line-xl);
         height: var(--font-line-xl);
+    }
+}
+
+.inverted {
+    color: var(--inverted-primary-color);
+    border-color: var(--inverted-primary-color);
+
+    &.background {
+        background-color: var(--inverted-background-color);
     }
 }

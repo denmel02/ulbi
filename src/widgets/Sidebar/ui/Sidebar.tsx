@@ -37,7 +37,8 @@ export const Sidebar = (props: SidebarProps) => {
                 data-testid="sidebar-toggle"
                 className={ classes.collapsedButton }
                 onClick={ onClick }
-                variant="backgroundInverted"
+                variant="background"
+                color="inverted"
                 size="sizeXL"
                 isSquare
             >

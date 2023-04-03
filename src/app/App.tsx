@@ -9,7 +9,7 @@ export const App = () => {
     const { theme } = useTheme();
 
     return (
-        <div className={ classNames('app', theme) }>
+        <div className={ classNames('app', theme) } id="app">
             <Suspense fallback={ <PageSpinner className="loader" /> }>
                 <ErrorBoundary error={ <PageError className="error"/> }>
                     <Navbar />
